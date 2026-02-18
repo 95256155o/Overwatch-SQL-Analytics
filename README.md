@@ -1,45 +1,37 @@
-# Overwatch-SQL-Analytics
-A relational database schema for tracking Overwatch match statistics.
-# Overwatch Performance Analytics Engine
+# Overwatch Competitive Data Analysis & Outcome Prediction
 
-### Relational Database Schema & KPI Tracking
+### Project Overview
+This project is a statistical study based on a dataset of 100 personal competitive matches in Overwatch 2 (North America, Solo Queue, DPS Role, Diamond 5 - Master 5 range).
 
-**Project Status:** Active | **Role:** Data Architect & Analyst
+The primary objective is to identify statistical correlations between scoreboard metrics and match outcomes. The project explores whether winning and losing teams exhibit distinct data patterns and if match results can be predicted solely based on "snapshot" data from the scoreboard (KDA, MIT, Damage, Healing) during a game.
 
----
+### Research Hypothesis
+Can the final outcome of a match (Win/Loss) be predicted by analyzing the scoreboard data of the participating teams?
+*   Do winning teams share specific statistical characteristics regardless of the map or game mode?
+*   Is there a "winning formula" visible in the raw numbers that transcends hero composition?
+*   Can a snapshot of data at a specific timestamp determine which team is currently in the winning position?
 
-## Project Overview
-This project is a relational database design aimed at capturing, storing, and analyzing competitive gameplay data from **Overwatch 2**. 
+### Dataset Specifications
+The dataset consists of 100 manually tracked matches with the following variables:
+*   **Match Context:** Date, Time, Duration, Map, Game Mode.
+*   **Rank/Environment:** NA Region, Solo Queue, Diamond/Master Tier.
+*   **Team Composition:** Hero selections for both allied and enemy teams.
+*   **Scoreboard Metrics:** Kills, Deaths, Assists, Damage, Healing, and Mitigation (MIT) for all 10 players.
 
-As a **Business Systems Analyst**, I approached this project to demonstrate how complex operational data (game mechanics) can be translated into a structured SQL schema to drive performance insights. The goal is to move beyond basic win/loss tracking and drill down into granular KPIs that influence match outcomes.
+### Data Structure & Schema
+The data is organized into a relational database to facilitate querying and pattern recognition. The schema links match environments (Maps) to performance metrics (Scoreboard).
 
-## Key Objectives
-- **Data Normalization:** Designed a schema (up to 3NF) to efficiently store Heroes, Maps, Game Modes, and Match History without redundancy.
-- **Data Integrity:** Utilized Foreign Keys and Constraints to ensure valid relationships between matches and player stats.
-- **Performance Analysis:** Structure allows for complex queries, such as:
-  - *Win Rate by Map Type (Control vs. Escort)*
-  - *Hero Performance Metrics (Damage/10min, Healing/10min)*
-  - *Role-based impact analysis*
+[INSERT ENTITY RELATIONSHIP DIAGRAM (ERD) HERE]
 
-## Tech Stack
-- **Database:** SQL (MySQL / PostgreSQL)
-- **Modeling:** Entity-Relationship Diagram (ERD)
-- **Tools:** DataGrip / DBeaver / Workbench
+### Analytical Goals
+1.  **Pattern Recognition:** Identify if high variance in specific stats (e.g., support deaths vs. tank damage) correlates strongly with loss rates.
+2.  **Snapshot Prediction:** Test if looking at the scoreboard at the 5-minute or 10-minute mark can accurately predict the final winner.
+3.  **Composition Analysis:** Analyze if certain statistical thresholds are required for specific compositions to succeed in the Diamond-Master bracket.
 
-## Database Structure (Schema Snapshot)
-The database is built around the following core entities:
-
-1.  **`Heroes_Table`**: Static data containing Hero Name, Role (Tank/DPS/Support), and base stats.
-2.  **`Maps_Table`**: Stores Map Name and Game Mode type.
-3.  **`Matches_Table`**: The central transaction table recording Match ID, Date, Result, and Map played.
-4.  **`Performance_Stats`**: The granular fact table linking a specific Match to specific Hero performance (Eliminations, Deaths, Healing, etc.).
-
-## How to Use
-*(SQL files will be uploaded soon)*
-
-1.  Clone the repository.
-2.  Import the `.sql` schema file into your local SQL environment.
-3.  Run the sample queries to view analytics.
+### Current Status
+*   Data collection for the initial N=100 sample set is complete.
+*   SQL database construction and normalization are in progress.
+*   Preliminary analysis of "Winning Team" statistical profiles is underway.
 
 ---
-*© 2025 Jesse Luo. This project is for educational and portfolio purposes.*
+© 2025 Jesse Luo.
