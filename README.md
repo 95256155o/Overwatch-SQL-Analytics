@@ -21,7 +21,35 @@ The dataset consists of 100 manually tracked matches with the following variable
 ### Data Structure & Schema
 The data is organized into a relational database to facilitate querying and pattern recognition. The schema links match environments (Maps) to performance metrics (Scoreboard).
 
-[INSERT ENTITY RELATIONSHIP DIAGRAM (ERD) HERE]
+### Data Structure & Schema
+The data is organized into a relational database linking match environments to player performance metrics.
+
+```mermaid
+erDiagram
+    MATCHES {
+        string display_id PK "Primary Key"
+        string map
+        string result "Win/Loss"
+        int duration_sec
+        string my_hero
+        string role
+        string note
+    }
+
+    SCOREBOARD {
+        string display_id FK "Foreign Key"
+        string team "Ally/Enemy"
+        string player_name
+        int e "Elims"
+        int a "Assists"
+        int d "Deaths"
+        int dmg "Damage"
+        int h "Healing"
+        int mit "Mitigation"
+    }
+
+    MATCHES ||--|{ SCOREBOARD : "contains"
+```
 
 ### Analytical Goals
 1.  **Pattern Recognition:** Identify if high variance in specific stats (e.g., support deaths vs. tank damage) correlates strongly with loss rates.
